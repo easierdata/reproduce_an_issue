@@ -1,11 +1,11 @@
 FROM giswqs/segment-geospatial
-LABEL maintainer="jsolly"
-USER ${NB_USER}
+USER root
 
-RUN mkdir -p /home/${NB_USER}/project/outputs
-RUN mkdir -p /home/${NB_USER}/project/inputs
-WORKDIR /home/${NB_USER}/project
+WORKDIR /
 
 COPY segment_geospatial.py .
+
+# Change permission of the script to make it readable and executable
+RUN chmod 755 /segment_geospatial.py
 
 CMD ["python3", "segment_geospatial.py"]
